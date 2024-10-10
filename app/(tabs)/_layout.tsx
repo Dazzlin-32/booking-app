@@ -24,14 +24,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="departments/departments"
         options={{
-          title: 'Explore',
+          title: 'Departments',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarIcon name={focused ? 'business' : 'business-outline'} color={color} />
           ),
         }}
       />
+      <Tabs.Screen
+        name="trial"
+        options={{
+          title: 'History',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'timer' : 'timer-outline'} color={color} />
+          ),
+        }}
+      />
+      
     </Tabs>
   );
 }

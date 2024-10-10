@@ -1,70 +1,104 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import {View, StyleSheet , ScrollView, Image} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, Card, Button } from 'react-native-paper';
+import { Link } from 'expo-router';
+const hospitalImg = require('../../assets/images/HOSPITAL.png')
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      <ScrollView style={styles.titleContainer} >
+
+        <Text variant="titleMedium" style={styles.welcome}>Welcome to Hospital Appointment</Text>
+        <Image 
+        style={styles.coverImage}
+        source={hospitalImg}></Image>
+        <Link href="./doctors" style= {styles.doctors}>
+        <Card >
+          <Card.Content>
+            <Text variant="titleLarge">Looking for a Doctor?
+            </Text>
+            <Text variant="bodyMedium">Check out our specialists here!
+            <Button style={styles.buttonIcon} icon="arrow-right-circle-outline" > </Button>
+            </Text>
+           
+          </Card.Content>
+       </Card>
+        </Link>
+        <View>
+        <Text variant="titleMedium" style={styles.departments}>Our Departments</Text>
+        <View style = {styles.row}>
+          <Card style={styles.cards}>
+            <Card.Content>
+              <Card.Cover style= {styles.cardIcons} source={require('../../assets/images/brain.png')} />
+              <Text variant="titleMedium">Neurology</Text>
+            </Card.Content>
+          </Card>
+          <Card style={styles.cards}>
+              <Card.Content>
+                <Card.Cover  style= {styles.cardIcons} source={require('../../assets/images/DNA.png')} />
+                <Text variant="titleMedium">Genetics</Text>
+              </Card.Content>
+          </Card>
+          <Card style={styles.cards}>
+              <Card.Content>
+                <Card.Cover  style= {styles.cardIcons} source={require('../../assets/images/dental.png')} />
+                <Text  variant="titleMedium">Dentist</Text>
+              </Card.Content>
+          </Card>
+
+        </View>
+        </View>
+      </ScrollView>
+    
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    //justifyContent: 'space-between',
+    //alignItems: 'flex-start',
+    gap: 8,
+  },
+  welcome :{
+    paddingTop: 40,
+    paddingBottom: 10,
+    marginLeft: 10,
+    paddingLeft: 10,
+  },
+  coverImage :{
+    margin: 20,
+    width: 350,
+    borderRadius: 20,
+  },
+  buttonIcon : {
+    width :80,
+    height: 50,
+    marginLeft : 100
+
+  },
+  departments : {
+    margin: 10,
+  },
+  doctors : {
+    marginHorizontal: 20,
+    marginVertical: 10,
+  },
+  row: {
     flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: 'space-around',
     gap: 8,
+    marginHorizontal: 20,
+    paddingBottom: 10,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  cards: {
+    marginHorizontal: 5,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  cardIcons : {
+    width: 70,
+    height :70, 
   },
 });
