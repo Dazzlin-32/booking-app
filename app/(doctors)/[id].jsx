@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Text ,Card, Button} from "react-native-paper";
 import { useLocalSearchParams } from 'expo-router';
-import { departments } from "../../constants/datas";
+import { doctors } from "../../constants/datas";
 import { useEffect, useState } from "react";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -13,7 +13,7 @@ function Details() {
 
     useEffect ( ( )=> {
       
-       setDoc( departments.find((id) => id === id))
+       setDoc( doctors.find((id) => id === id))
        console.log(doc)
     })
     

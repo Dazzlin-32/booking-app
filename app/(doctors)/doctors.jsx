@@ -16,7 +16,7 @@ function Doctors() {
                 doctors.map(
                     (doctor)=> (
                        
-                        <Link  href= {"/doctors/" + doctor.id}>
+                        <Link  href= {"(doctors)" + doctor.id}>
                             <Card >
                                 <Card.Content>
                                     <Card.Cover  style= {styles.avatar} source={doctor.avatar } />
