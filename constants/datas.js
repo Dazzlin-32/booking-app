@@ -151,12 +151,12 @@ export const doctors = [
     },
     {
         id : 1,
-        name : "Bellamy Nicholas",
+        name : "Roger Ferguson",
         avatar : require('../assets/images/doctor.png'),
-        department : "Cardiology",
+        department : "Embryology",
         experience : " 10 years",
         patients : 100,
-        details : "Dr. Bellamy Nicholas is a top specialist at London Bridge Hospital at London. He has achieved several awards and recognition for is contribution and service in his own field. He is available for private consultation. ",
+        details : "Dr. Roger Ferguson is a top specialist at London Bridge Hospital at London. He has achieved several awards and recognition for is contribution and service in his own field. He is available for private consultation. ",
         phone : '+1234567890',
     },
     {
@@ -191,12 +191,12 @@ export const doctors = [
     },
     {
         id : 5,
-        name : "Bellamy Nicholas",
+        name : "Nick Whtherington",
         avatar : require('../assets/images/doctor.png'),
-        department : "Cardiology",
+        department : "Gynecology",
         experience : " 10 years",
-        patients : 100,
-        details : "Dr. Bellamy Nicholas is a top specialist at London Bridge Hospital at London. He has achieved several awards and recognition for is contribution and service in his own field. He is available for private consultation. ",
+        patients : 130,
+        details : "Dr. Nick Whtherington is a top specialist at London Bridge Hospital at London. He has achieved several awards and recognition for is contribution and service in his own field. He is available for private consultation. ",
         phone : '+1234567890',
     },
     {
@@ -212,9 +212,9 @@ export const doctors = [
 
     {
         id : 7,
-        name : "Bellamy Nicholas",
+        name : "Jhon Doe",
         avatar : require('../assets/images/doctor.png'),
-        department : "Cardiology",
+        department : "Genetics",
         experience : " 10 years",
         patients : 100,
         details : "Dr. Bellamy Nicholas is a top specialist at London Bridge Hospital at London. He has achieved several awards and recognition for is contribution and service in his own field. He is available for private consultation. ",
