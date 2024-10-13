@@ -104,6 +104,10 @@ export const departments = [
             {
                 name: "Jhon Doe",
                 
+            },
+            {
+                name: "Jhonny Deep",
+                
             }
         ]
 
@@ -191,7 +195,7 @@ export const doctors = [
     },
     {
         id : 5,
-        name : "Nick Whtherington",
+        name : "Nick Whthering",
         avatar : require('../assets/images/doctor.png'),
         department : "Gynecology",
         experience : " 10 years",
@@ -242,7 +246,7 @@ export const doctors = [
     },
     {
         id : 10,
-        name : "Valerie Hemsworth",
+        name : "Valerie Wworth",
         avatar : require('../assets/images/doctor.png'),
         department : "Cardiology",
         experience : " 10 years",

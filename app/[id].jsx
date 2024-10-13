@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Text ,Card, Button} from "react-native-paper";
 import { useLocalSearchParams } from 'expo-router';
-import { doctors } from "../../constants/datas";
+import { departments } from "../constants/datas";
 import { useEffect, useState } from "react";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -13,15 +13,17 @@ function Details() {
 
     useEffect ( ( )=> {
       
-       setDoc( doctors.find((id) => id === id))
+        const foundDoctor = departments.find((x) => x.id == id); // Check the correct property for `id`
+        
+        setDoc(foundDoctor)
        console.log(doc)
-    })
+    }, [id])
     
     return ( 
         <ScrollView style={styles.titleContainer}>
            <Card style={styles.cards}>
               <Card.Content>
-                <Card.Cover  style= {styles.avatar} source={doc.avatar} />
+                <Card.Cover  style= {styles.avatar} source={doc.logo} />
                 <Text style= {{marginHorizontal: 90, marginVertical: 5}} variant="titleLarge">{doc.name}</Text>
                 <Text  style= {{marginHorizontal: 130}} variant="titleSmall">{doc.department}</Text>
 
@@ -29,31 +31,22 @@ function Details() {
                     <Card  style ={styles.rowCards}>
                         <Card.Content style = {{paddingTop:0}}>
                             <Ionicons style={[styles.rowIcons, {backgroundColor:'rgba(122, 206, 250, 0.15)'}]}  name="people-outline" size={30} color="#7ACEFA" />
-                           
+                            <Text variant="labelLarge">{doc.doctors?.length} Doctor</Text>
                         </Card.Content>
-                    </Card>
-
-                    
+                    </Card> 
                 </View>
               </Card.Content>
           </Card>
           {
-                                doc.doctors &&  doc.doctors.map (
-                                    (doctor) => (
-                                        <Card  style ={styles.rowCards}>
-                                        <Card.Content style = {{paddingTop:0}}>
-                                            <Ionicons style={[styles.rowIcons, {backgroundColor:'rgba(122, 206, 250, 0.15)'}]}  name="people-outline" size={30} color="#7ACEFA" />
-                                            <Text variant="titleLarge">{doctor.name}</Text>
-                                           
-                                        </Card.Content>
-                                        </Card>
-                                        
-                                       
-
-                                )
-                                )
-                            }
-         
+            doc.doctors?.map( (x)=> (
+                <Card  style ={styles.rowCards}>
+                <Card.Content style = {{paddingTop:0}}>
+                <Ionicons style={[styles.rowIcons, {backgroundColor:'rgba(122, 206, 250, 0.15)'}]}  name="people-outline" size={30} color="#7ACEFA" />
+                    <Text variant="labelLarge">{x?.name}</Text>
+                </Card.Content>
+            </Card> 
+            ))
+          }
         </ScrollView>
      );
 }
@@ -102,6 +95,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginBottom: 5
         
+    },
+    body : {
+    padding: 20
     },
     button :{
         width: 'auto',

@@ -1,15 +1,25 @@
+import { useState } from 'react';
 import { Text, Button } from 'react-native';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
 export default function TrialRoute() {
-    return ( 
-      
-        <ThemedView>
-          <ThemedText type="title">Trial</ThemedText>
-        </ThemedView>
-        
     
-     );
-}
+  const [selected, setSelected] = useState('');
+
+  return (
+    <Calendar
+      onDayPress={day => {
+        setSelected(day.dateString);
+      }}
+      markedDates={{
+        [selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
+      }}
+     
+      firstDay= {1}
+      // hideExtraDays={true}
+      hideArrows={true}
+    />
+  );
+};
+       
+      

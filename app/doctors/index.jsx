@@ -1,10 +1,9 @@
 import { ScrollView,StyleSheet , View} from "react-native";
 import { Text, Searchbar, Card } from "react-native-paper";
-import { departments, doctors } from "../../../constants/datas";
+import { doctors } from "../../constants/datas";
 import { Link } from "expo-router";
 
-function Departments() {
-    console.log(departments)
+function Doctors() {
     return (
         <ScrollView style={styles.titleContainer}>
              <Searchbar style= {styles.searchBar}
@@ -12,16 +11,18 @@ function Departments() {
                     onChangeText={()=>{}}
                     value={()=> {}}
                     />
-                <View style={styles.departments}>
+                <View style={styles.doctors}>
                 {
-                departments.map(
-                    (department)=> (
+                doctors.map(
+                    (doctor)=> (
                        
-                        <Link  href= {"/"+ department.id}>
-                            <Card style={{ width: 150, height: 90 }}>
+                        <Link  href= {"/doctors/" + doctor.id}>
+                            <Card  style={{ width: 170, height: 150 }}>
                                 <Card.Content>
-                                    <Card.Cover  style= {styles.avatar} source={department.logo } />
-                                    <Text style= {{width: 140}} variant="titleMedium"> {department.name}
+                                    <Card.Cover  style= {styles.avatar} source={doctor.avatar } />
+                                    <Text variant="titleMedium"> {doctor.name}
+                                    </Text>
+                                    <Text style={styles.department} variant="bodySmall"> {doctor.department}
                                     </Text>
                                 
                                 </Card.Content>
@@ -36,7 +37,7 @@ function Departments() {
       );
 }
 
-export default Departments;
+export default Doctors;
 const styles = StyleSheet.create({
     titleContainer: {
       flex: 1,
@@ -48,22 +49,22 @@ const styles = StyleSheet.create({
     searchBar : {
         margin: 5
     },
-    departments : {
+    doctors : {
         marginHorizontal: 20,
         marginVertical: 5,
+        width: 'auto',
         flexDirection: 'row',
         flexWrap : 'wrap',
-        justifyContent :'center',
-        alignItems: "center",
-        gap: 10,
+        alignItems: "flex-start",
+        gap: 10
           },
     avatar : {
-        width: 50,
-        height :50, 
+        width: 70,
+        height :70, 
         borderRadius: 30,
-        marginLeft: 20
+        marginLeft: 30
       },
     department: {
-        
+        marginLeft : 30,
     },
 })

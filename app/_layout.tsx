@@ -30,11 +30,15 @@ export default function RootLayout() {
    <PaperProvider>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(doctors)/doctors"  options={ {
+        <Stack.Screen name="doctors/index"  options={ {
           headerTitle : "Doctors"
         }}/>
-         <Stack.Screen name="(doctors)/[id]"  options={ {
-          headerTitle : ""
+        
+        <Stack.Screen name="doctors/[id]"  options={ {
+          headerTitle : "Doctor"
+        }}/>
+        <Stack.Screen name="[id]"  options={ {
+          headerTitle : "Departments"
         }}/>
         <Stack.Screen name="+not-found" />
 
