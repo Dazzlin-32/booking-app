@@ -1,15 +1,50 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, View } from "react-native";
 import { Text ,Card, Button} from "react-native-paper";
-import { useLocalSearchParams } from 'expo-router';
+import { Link, useLocalSearchParams } from 'expo-router';
 import { doctors } from "../../constants/datas";
 import { useEffect, useState } from "react";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import Feather from '@expo/vector-icons/Feather';
+import Feather from '@expo/vector-icons/Feather'; 
+import moment from 'moment';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 function Details() {
     const { id } = useLocalSearchParams();
     const [doc , setDoc]= useState({})
+
+    //Booking
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
+    
+  // Set the minimum date (today) and maximum date (2 weeks from today)
+    const minDate = new Date(); // Today
+    const maxDate = moment().add(14, 'days').toDate(); // 2 weeks from now
+
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
+
+
+
+    const handleConfirm = (date) => {
+        const roundedDate = roundToNearest30Minutes(date);
+        setSelectedDate(roundedDate);
+        hideDatePicker();
+        Alert.alert("Selected Date", roundedDate.toString());
+    };
+
+
+  // Rounds the time to the nearest 30-minute interval
+  const roundToNearest30Minutes = (date) => {
+    const minutes = 30 * Math.round(date.getMinutes() / 30);
+    return new Date(date.setMinutes(minutes, 0, 0));  // Set seconds and milliseconds to 0
+  };
+
 
     useEffect ( ( )=> {
       
@@ -56,7 +91,27 @@ function Details() {
                         <Text style={{marginVertical:2}} >Chat me up!</Text>
                     </View>
                 </View>
-                <Button mode="contained" style={[styles.button, {margin:5}]}>Make an Appointment</Button>
+                <Button mode="contained" style={[styles.button, {margin:5}]}  onPress={showDatePicker} >Make an Appointment</Button>
+                <DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="datetime"  // Allows selecting both date and time
+                    onConfirm={handleConfirm}
+                    onCancel={hideDatePicker}
+                    minimumDate={minDate}
+                    maximumDate={maxDate}
+                    minuteInterval={30}  // Set time intervals to 30 minutes
+                />
+
+                 {selectedDate && (
+        // <Text style={{ marginTop: 20 }}>
+        //   Selected Date and Time: {moment(selectedDate).format('MMMM Do YYYY, h:mm A')}
+        // </Text>
+        <Link href={{ pathname: "/trial", params: { name: doc.name, department: doc.department , date: selectedDate} }} asChild >
+        <Button mode="contained" style={[styles.button, {marginLeft: 10}]} >Show Appointmentt</Button>
+        </Link>
+
+      )}
+                
             </View>
          
         </ScrollView>

@@ -1,20 +1,37 @@
-import { Text, Pressable, StyleSheet, SafeAreaView } from 'react-native';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { Text, Pressable, StyleSheet, SafeAreaView, View } from 'react-native';
 import { Link } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
+import { Card } from 'react-native-paper';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+
+
 
 export default function Trial() {
+  const { name, department, date } = useLocalSearchParams(); // Extract params from the URL
     return ( 
        
 
       <SafeAreaView  style={styles.titleContainer}>
+        {name ?
+          <View>
+            <Card  style ={styles.rowCards}>
+                        <Card.Content style = {{paddingTop:0}}>
+                            <MaterialCommunityIcons  style={[styles.rowIcons, {backgroundColor:'rgba(254, 246, 236, 1)'}]} name="medal-outline" size={30} color="#F7C480" />
+                            <Text   variant="labelLarge">Doctor's Name: {name}</Text>
+                            <Text  variant="labelLarge">Department: {department}</Text>
+                            <Text  variant="labelLarge">Apointment Date: {date}</Text>
+                        </Card.Content>
+                    </Card> 
+            
+          </View>
+          :
+          <View>
+            <Text>No Appointments Yet!</Text>
+          </View>
 
-          <Link href="/trialRoute" >
-            
-              <Text>Trial</Text>
-            
-          </Link>  
+        
+        }
+        
       </SafeAreaView>
      
      );

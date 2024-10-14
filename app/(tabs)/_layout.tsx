@@ -1,9 +1,10 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -19,7 +20,7 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <Ionicons name={focused ? 'home' : 'home-outline'} color={color} />
           ),
         }}
       />
@@ -28,7 +29,7 @@ export default function TabLayout() {
         options={{
           title: 'Departments',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'business' : 'business-outline'} color={color} />
+            <Ionicons name={focused ? 'business' : 'business-outline'} color={color} />
           ),
         }}
       />
@@ -37,7 +38,7 @@ export default function TabLayout() {
         options={{
           title: 'History',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'timer' : 'timer-outline'} color={color} />
+            <Ionicons name={focused ? 'timer' : 'timer-outline'} color={color} />
           ),
         }}
       />
